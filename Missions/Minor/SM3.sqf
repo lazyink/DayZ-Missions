@@ -19,18 +19,19 @@ _hummer = createVehicle ["HMMWV_DZ",[(_coords select 0) + 10, (_coords select 1)
 _hummer2 = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) - 25, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
 _hummer3 = createVehicle ["SUV_DZ",[(_coords select 0) + 25, (_coords select 1) - 15,0],[], 0, "CAN_COLLIDE"];
 
-_baserunover setVariable ["Mission",1,true];
-_baserunover2 setVariable ["Mission",1,true];
-_baserunover3 setVariable ["Mission",1,true];
-_hummer setVariable ["Mission",1,true];
-_hummer1 setVariable ["Mission",1,true];
-_hummer2 setVariable ["Mission",1,true];
-_hummer3 setVariable ["Mission",1,true];
+_baserunover setVariable ["ObjectID",""];
+_baserunover2 setVariable ["ObjectID",""];
+_baserunover3 setVariable ["ObjectID",""];
+_hummer setVariable ["ObjectID",""];
+_hummer1 setVariable ["ObjectID",""];
+_hummer2 setVariable ["ObjectID",""];
+_hummer3 setVariable ["ObjectID",""];
 
 _crate = createVehicle ["USVehicleBox",[(_coords select 0) - 3, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxes.sqf";
 
-_crate setVariable ["Mission",1,true];
+_crate setVariable ["ObjectID",""];
+_crate setVariable ["permaLoot",true];
 
 [[(_coords select 0) - 20, (_coords select 1) - 15,0],40,4,2,0] execVM "\z\addons\dayz_server\missions\add_unit_server2.sqf";//AI Guards
 sleep 3;
