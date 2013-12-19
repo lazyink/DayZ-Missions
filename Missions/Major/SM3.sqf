@@ -17,18 +17,21 @@ _baserunover = createVehicle ["land_fortified_nest_big",[(_coords select 0) - 20
 _baserunover2 = createVehicle ["Land_Fort_Watchtower",[(_coords select 0) - 10, (_coords select 1) + 10,-0.2],[], 0, "CAN_COLLIDE"];
 _hummer = createVehicle ["HMMWV_DZ",[(_coords select 0) + 25, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
 
-_baserunover2 setVariable ["Mission",1,true];
-_baserunover setVariable ["Mission",1,true];
-_hummer setVariable ["Mission",1,true];
+_baserunover2 setVariable ["ObjectID",""];
+_baserunover setVariable ["ObjectID",""];
+_hummer setVariable ["ObjectID",""];
 
 _crate = createVehicle ["USVehicleBox",[(_coords select 0) + 5, (_coords select 1),0],[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxesM.sqf";
-_crate setVariable ["Mission",1,true];
 
+_crate setVariable ["ObjectID",""];
+_crate setVariable ["permaLoot",true];
 
 _crate2 = createVehicle ["USLaunchersBox",[(_coords select 0) + 12, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate2] execVM "\z\addons\dayz_server\missions\misc\fillBoxesS.sqf";
-_crate2 setVariable ["Mission",1,true];
+
+_crate2 setVariable ["ObjectID",""];
+_crate2 setVariable ["permaLoot",true];
 
 _aispawn = [_coords,80,6,3,1] execVM "\z\addons\dayz_server\missions\add_unit_server.sqf";//AI Guards
 sleep 5;
