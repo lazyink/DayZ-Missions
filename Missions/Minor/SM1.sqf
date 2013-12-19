@@ -14,7 +14,7 @@ publicVariable "MCoords";
 [] execVM "debug\addmarkers75.sqf";
 
 _hummer = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) + 10, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
-_hummer setVariable ["Mission",1,true];
+_hummer setVariable ["ObjectID",""];
 
 [_coords,80,4,2,1] execVM "\z\addons\dayz_server\missions\add_unit_server2.sqf";//AI Guards
 sleep 5;
