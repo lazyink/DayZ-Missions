@@ -7,8 +7,6 @@ Original code by <a href="https://github.com/theszerdi">TheSzerdi</a>, Falcyn an
  * Before installing you must first customize the fillboxes SQF's inside the Missions/Misc folder and the NPC's load-outs in the addunitserver SQF's. 
  
  * If you leave the script as is, you MUST update your BE filters with the attached files as it contains weapons that BE will kick for.
- 
- * If you use SARGE AI, in the mission sqfs, you must change all lines ending with <b>setVariable ["Mission",1,true];<b> to <b>setVariable ["Sarge",1,true];<b>
 
 
 <h3>Installation</h3>
@@ -38,48 +36,15 @@ Open <b>server_functions.sqf</b>
 <b>Insert after:</b>
 	
 	//----------InitMissions--------//
-    MissionGo = 0;
-    MissionGoMinor = 0;
-    if (isServer) then { 
-    SMarray = ["SM1","SM2","SM3","SM4","SM5","SM6"];
-    [] execVM "\z\addons\dayz_server\missions\major\SMfinder.sqf"; //Starts major mission system
-    SMarray2 = ["SM1","SM2","SM3","SM4","SM5","SM6"];
-    [] execVM "\z\addons\dayz_server\missions\minor\SMfinder.sqf"; //Starts minor mission system
-    };
-    //---------EndInitMissions------//
-
-	
-Open <b>server_updateObject.sqf</b>
-	
-<b>Find:</b>
-	
-    #ifdef OBJECT_DEBUG
-    diag_log(format["Non-string Object: ID %1 UID %2", _objectID, _uid]);
-	#endif
-    //force fail
-    _objectID = "0";
-    _uid = "0";
+	MissionGo = 0;
+	MissionGoMinor = 0;
+	if (isServer) then { 
+	    SMarray = ["SM1","SM2","SM3","SM4","SM5","SM6"];
+	    [] execVM "\z\addons\dayz_server\missions\major\SMfinder.sqf"; //Starts major mission system
+	    SMarray2 = ["SM1","SM2","SM3","SM4","SM5","SM6"];
+	    [] execVM "\z\addons\dayz_server\missions\minor\SMfinder.sqf"; //Starts minor mission system
 	};
-	
-<b>Insert after:</b>  
-	
-    if (_object getVariable "Mission" == 1) exitWith {};
-	
-
-	
-Open <b>server_cleanup.fsm</b>
- 
-<b>Find:</b>  
- 
-    if(vehicle _x != _x && !(vehicle _x in _safety) && (typeOf vehicle _x) != ""ParachuteWest"") then {" \n
-
-<b>Replace with:</b>
-
-    if(vehicle _x != _x && (vehicle _x getVariable [""Mission"",0] != 1) && !(vehicle _x in _safety) && (typeOf vehicle _x) != ""ParachuteWest"") then {" \n
-
-	
-	
-IF YOU HAVE SARGE AI INSTALLED YOU NEED TO CHANGE THE VEHICLE VARIABLE IN EACH MISSION TO "SARGE" INSTEAD OF USING "MISSIONS" (Not tested with SARGE AI, may be incompatible.)
+	//---------EndInitMissions------//
 
 
  
@@ -87,12 +52,10 @@ IF YOU HAVE SARGE AI INSTALLED YOU NEED TO CHANGE THE VEHICLE VARIABLE IN EACH M
 
 Copy the included debug folder into the root of the mission.pbo.
 	
-The AI require faction settings. If you have SARGE AI you're good to go. Otherwise add faction.sqf to the root of the mission.pbo and add this line to the end of your init.sqf:
+The AI require faction settings. If you have SARGE AI or DZAI you're good to go. Otherwise add faction.sqf to the root of the mission.pbo and add this line to the end of your init.sqf:
 
     [] execVM "faction.sqf";
-	
 
-	
 	
 <h3>The Crates</h3>
 
